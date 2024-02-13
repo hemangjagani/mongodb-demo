@@ -1,0 +1,50 @@
+[
+  {
+    "id": "357fc425-1c31-4c33-a3a4-6b5060355c9a",
+    "title": "Google pixel 11111111111",
+    "description": "An apple mobile which is nothing like apple",
+    "price": 549,
+    "discountPercentage": 12.96,
+    "rating": 4.69,
+    "stock": 94,
+    "brand": "Apple",
+    "category": "smartphones",
+    "thumbnail": "https://media.istockphoto.com/id/497452144/photo/woman-unlock-iphone-6s-rose-gold-on-the-white-background.jpg?s=2048x2048&w=is&k=20&c=5lmXwTBHEu5ojdEVzngGIYYOH9YHLbzsD-BWsLarjMs=",
+    "images": [
+      "https://media.istockphoto.com/id/497451902/photo/isolated-woman-hand-holding-iphone-6s-rose-gold.jpg?s=2048x2048&w=is&k=20&c=GYjhjm2KGp4J1eIahvzKS_rEmEe0eApO3nTLKI293qQ=",
+      "https://media.istockphoto.com/id/468819201/photo/touching-screen-on-smart-phone.jpg?s=2048x2048&w=is&k=20&c=KHhbL_xSWMYtIrJx8C5Y1UK_V_DaFYCkSG5Wn52520A="
+    ]
+  },
+  {
+    "title": "iPhone 9",
+    "description": "An apple mobile which is nothing like apple",
+    "price": 549,
+    "discountPercentage": 12.96,
+    "rating": 4.69,
+    "stock": 94,
+    "brand": "Apple",
+    "category": "smartphones",
+    "thumbnail": "https://media.istockphoto.com/id/497452144/photo/woman-unlock-iphone-6s-rose-gold-on-the-white-background.jpg?s=2048x2048&w=is&k=20&c=5lmXwTBHEu5ojdEVzngGIYYOH9YHLbzsD-BWsLarjMs=",
+    "images": [
+      "https://media.istockphoto.com/id/497451902/photo/isolated-woman-hand-holding-iphone-6s-rose-gold.jpg?s=2048x2048&w=is&k=20&c=GYjhjm2KGp4J1eIahvzKS_rEmEe0eApO3nTLKI293qQ=",
+      "https://media.istockphoto.com/id/468819201/photo/touching-screen-on-smart-phone.jpg?s=2048x2048&w=is&k=20&c=KHhbL_xSWMYtIrJx8C5Y1UK_V_DaFYCkSG5Wn52520A="
+    ],
+    "id": "91b9378a-e96f-4c17-8ad7-c39c71124666"
+  },
+  {
+    "title": "iPhone 9",
+    "description": "An apple mobile which is nothing like apple",
+    "price": 549,
+    "discountPercentage": 12.96,
+    "rating": 4.69,
+    "stock": 94,
+    "brand": "Apple",
+    "category": "smartphones",
+    "thumbnail": "https://media.istockphoto.com/id/497452144/photo/woman-unlock-iphone-6s-rose-gold-on-the-white-background.jpg?s=2048x2048&w=is&k=20&c=5lmXwTBHEu5ojdEVzngGIYYOH9YHLbzsD-BWsLarjMs=",
+    "images": [
+      "https://media.istockphoto.com/id/497451902/photo/isolated-woman-hand-holding-iphone-6s-rose-gold.jpg?s=2048x2048&w=is&k=20&c=GYjhjm2KGp4J1eIahvzKS_rEmEe0eApO3nTLKI293qQ=",
+      "https://media.istockphoto.com/id/468819201/photo/touching-screen-on-smart-phone.jpg?s=2048x2048&w=is&k=20&c=KHhbL_xSWMYtIrJx8C5Y1UK_V_DaFYCkSG5Wn52520A="
+    ],
+    "id": "ee33cd55-6356-4475-a889-d00eb0fc0ce8"
+  }
+]
