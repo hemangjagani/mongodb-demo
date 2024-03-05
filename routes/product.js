@@ -7,6 +7,27 @@
  *   get:
  *     summary: Get all products
  *     tags: [Products]
+ *     parameters: 
+ *        - in: query
+ *          name: limit
+ *          schema:
+ *            type: integer
+ *            format: int32
+ *          description: Number of items to return
+ *          required: false
+ *        - in: query
+ *          name: offset
+ *          schema:
+ *            type: integer
+ *            format: int32
+ *          description: Number of items to skip
+ *          required: false
+ *        - in: query
+ *          name: userId
+ *          schema:
+ *            type: integer
+ *          description: User id
+ *          required: false
  *     responses:
  *       '200':
  *         description: A list of products
@@ -94,6 +115,7 @@ const {
   postProduct,
   getProduct,
   patchProduct,
+  deleteProduct,
 } = require("../controllers/products");
 
 router.get("/products", getProducts);
@@ -101,6 +123,8 @@ router.get("/products", getProducts);
 router.post("/products", postProduct);
 
 router.patch("/products/:id", patchProduct);
+
+router.delete("/products/:id", deleteProduct);
 
 router.get("/products/:id", getProduct);
 

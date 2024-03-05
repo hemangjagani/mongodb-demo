@@ -80,12 +80,17 @@ const options = {
           properties: {
             productId: {
               type: "string",
-              description: "The UUID of the product to add to the cart",
+              description: "Product ID integer",
+            },
+            userId: {
+              type: "string",
+              description: "User ID integer",
             },
           },
           required: ["productId"],
           example: {
-            productId: "9729d895-d14f-410c-b2b0-92099d9c4440",
+            productId: "1",
+            userId: "1",
           },
         },
         cartResponse: {
@@ -112,9 +117,78 @@ const options = {
             totalPrice: 4392,
           },
         },
+        ordersResponse: {
+          type: "object",
+          properties: {
+            orders: {
+              type: "object",
+              items: {
+                $ref: "#/components/schemas/products",
+              },
+            },
+            message: {
+              type: "string",
+              description: "Success message",
+            },
+          },
+          example: {
+            products: [
+              {
+                userId: 1,
+                title: "iPhone 9",
+                description: "An apple mobile which is nothing like apple",
+                price: 549,
+                discountPercentage: 12.96,
+                rating: 4,
+                stock: 94,
+                brand: "Apple",
+                category: "smartphones",
+                thumbnail:
+                  "https://media.istockphoto.com/id/497452144/photo/woman-unlock-iphone-6s-rose-gold-on-the-white-background.jpg?s=2048x2048&w=is&k=20&c=5lmXwTBHEu5ojdEVzngGIYYOH9YHLbzsD-BWsLarjMs=",
+                images: [
+                  "https://media.istockphoto.com/id/497451902/photo/isolated-woman-hand-holding-iphone-6s-rose-gold.jpg?s=2048x2048&w=is&k=20&c=GYjhjm2KGp4J1eIahvzKS_rEmEe0eApO3nTLKI293qQ=",
+                  "https://media.istockphoto.com/id/468819201/photo/touching-screen-on-smart-phone.jpg?s=2048x2048&w=is&k=20&c=KHhbL_xSWMYtIrJx8C5Y1UK_V_DaFYCkSG5Wn52520A=",
+                ],
+              },
+            ],
+            totalPrice: 4392,
+          },
+        },
+        orderReqeust: {
+          type: "object",
+          properties: {
+            userId: {
+              type: "string",
+              description: "User ID integer",
+            },
+            message: {
+              type: "string",
+              description: "Success message",
+            },
+          },
+          example: {
+            userId: 1,
+          },
+        },
+        orderResponse: {
+          type: "object",
+          properties: {
+            message: {
+              type: "string",
+              description: "Success message",
+            },
+          },
+          example: {
+            message: "Order successfully!",
+          },
+        },
         product: {
           type: "object",
           properties: {
+            userId: {
+              type: "string",
+              description: "The UUID of the user",
+            },
             id: {
               type: "string",
               description: "The UUID of the product",
@@ -165,12 +239,12 @@ const options = {
             },
           },
           example: {
-            id: "9729d895-d14f-410c-b2b0-92099d9c4440",
+            userId: 1,
             title: "iPhone 9",
             description: "An apple mobile which is nothing like apple",
             price: 549,
             discountPercentage: 12.96,
-            rating: 4.69,
+            rating: 4,
             stock: 94,
             brand: "Apple",
             category: "smartphones",
