@@ -2,27 +2,39 @@ const { User } = require("../models");
 
 exports.createUser = async (req, res) => {
   try {
-    const { email, password, name } = req.body;
-    const user = await User.findOne({ where: { email: email } });
-    if (!!user) {
-     res.status(400).send("User already exist!");
+    const username = req.body.username;
+    const email = req.body.email;
+    const password = req.body.password;
+    const user = new User({ username, email, password });
+    const savedUser = await user.save();
+    res.status(201).json(savedUser);
+  } catch (error) {
+    console.log("###error", error);
+    res.status(500).json({ success: false, message: "Internal server error!" });
+  }
+};
+
+exports.getUsers = async (req, res) => {
+  try {
+    const users = await User.findAll();
+    res.status(200).json(users);
+  } catch (error) {
+    console.log("###error", error);
+    res.status(500).json({ success: false, message: "Internal server error!" });
+  }
+};
+
+exports.getUserById = async (req, res) => {
+  const userId = req.params.id;
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      res.status(404).send("User not found!");
     } else {
-        const userDetails = await User.create({
-          email,
-          password,
-          name,
-        });
-    
-        if(!!userDetails) {
-            await userDetails.createCart();
-            // Remove the password field from the userDetails object
-            const responseDetails = { ...userDetails.dataValues };
-            delete responseDetails.password;
-        
-            res.status(201).send(responseDetails);
-        }
+      res.status(200).json(user);
     }
   } catch (error) {
-    res.status(500).json({ success: false, message: "Internal server error!" });
+    console.log("###error", error);
+    res.status(500).send("Internal Server Error");
   }
 };

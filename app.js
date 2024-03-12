@@ -2,16 +2,15 @@ const express = require("express");
 const swaggerUi = require("swagger-ui-express");
 const { config } = require("dotenv");
 const bodyParser = require("body-parser");
-const { error404 } = require("./controllers/error");
+const {  } = require("./controllers/error");
 const { specs } = require("./utils/swagger-ui");
 const cors = require("cors");
-const { sequelize, testingConnection } = require("./utils/db");
+const { mongoConnect } = require("./utils/db");
 const {
   productRoutes,
   cartRoutes,
   userRoutes,
 } = require("./routes");
-const { Product, User, Cart, CartItem, Order, OrderItem } = require("./models");
 
 const result = config();
 if (result.error) {
@@ -31,49 +30,21 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-testingConnection();
+// testingConnection();
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
-app.use("/api", userRoutes);
-app.use(async (req, res, next) => {
-  const userId = req.body.userId || req.query.userId;
-  console.log("###userId", userId);
-  const user = await User.findByPk(userId);
-  console.log("###user", user);
-  if (!!user) {
-    req.user = user;
-    next();
-  } else {
-    res.status(401).send("UNAUTHORIZED!");
-  }
+mongoConnect(() => {
+  console.log("DB Connected!");
+  app.listen(port, () => {
+    // Log a message indicating that the server is running
+    console.log(`Server is running on port ${port}`);
+  });
 });
 
-Product.belongsTo(User, { constraints: true, onDelete: "CASCADE" });
-User.hasMany(Product);
-User.hasOne(Cart);
-Cart.belongsTo(User);
-Cart.belongsToMany(Product, { through: CartItem });
-Product.belongsToMany(Cart, { through: CartItem });
-Order.belongsTo(User);
-User.hasMany(Order);
-Order.belongsToMany(Product, { through: OrderItem });
+app.use("/api", userRoutes);
 
-app.use("/api", productRoutes);
+app.use("/api/products", productRoutes);
 app.use("/api", cartRoutes);
 
 app.use(error404);
-
-sequelize
-  .sync()
-  // .sync({force: true})
-  .then(() => {
-    // Start the server and listen on the specified port
-    app.listen(port, () => {
-      // Log a message indicating that the server is running
-      console.log(`Server is running on port ${port}`);
-    });
-  })
-  .catch((error) => {
-    console.log("###error", error);
-  });

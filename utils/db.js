@@ -1,22 +1,28 @@
-const { Sequelize } = require("sequelize");
+const { MongoClient } = require("mongodb");
+const { config } = require("dotenv");
+config();
 
-const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  "admin",
-  {
-    host: process.env.DB_HOST,
-    dialect: "postgres",
-    port: process.env.DB_PORT || 5432,
-  }
-);
-const testingConnection = async () => {
-  try {
-    await sequelize.authenticate();
-    console.log("Database connection has been established successfully.");
-  } catch (error) {
-    console.error("Unable to connect to the database:", error);
-  }
+const connectionString = process.env.MONGODB_URI || "";
+
+let _db;
+
+const mongoConnect = (callback) => {
+  MongoClient.connect(connectionString)
+    .then((client) => {
+      _db = client.db();
+      callback(client);
+    })
+    .catch((error) => {
+      console.log("Mongo error==>", error);
+      throw error;
+    });
 };
 
-module.exports = { sequelize, testingConnection };
+const getDB = () => {
+  if (_db) {
+    return _db;
+  }
+  throw "No Database Found!";
+};
+
+module.exports = { mongoConnect, getDB };

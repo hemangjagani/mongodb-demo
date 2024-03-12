@@ -11,9 +11,8 @@
  *        - in: query
  *          name: userId
  *          schema:
- *            type: integer
+ *            type: uuid
  *          description: user id
- *          required: true
  *     responses:
  *       '200':
  *         description: A list of products in the cart
@@ -119,6 +118,6 @@ router.post("/cart/add-product", addProduct);
 router.delete("/cart/delete-product/:productId", deleteProduct);
 
 router.post("/create-order", postOrders);
-router.get("/orders", getOrders);
+// router.get("/orders", getOrders);
 
 module.exports = router;

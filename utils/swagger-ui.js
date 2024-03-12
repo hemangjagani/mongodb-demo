@@ -117,6 +117,15 @@ const options = {
             totalPrice: 4392,
           },
         },
+        NotFound: {
+          type: "object",
+          properties: {
+            message: {
+              type: "string",
+              description: "Success message",
+            },
+          },
+        },
         ordersResponse: {
           type: "object",
           properties: {
@@ -158,13 +167,9 @@ const options = {
           type: "object",
           properties: {
             userId: {
-              type: "string",
+              type: "uuid",
               description: "User ID integer",
-            },
-            message: {
-              type: "string",
-              description: "Success message",
-            },
+            }
           },
           example: {
             userId: 1,
@@ -254,6 +259,59 @@ const options = {
               "https://media.istockphoto.com/id/497451902/photo/isolated-woman-hand-holding-iphone-6s-rose-gold.jpg?s=2048x2048&w=is&k=20&c=GYjhjm2KGp4J1eIahvzKS_rEmEe0eApO3nTLKI293qQ=",
               "https://media.istockphoto.com/id/468819201/photo/touching-screen-on-smart-phone.jpg?s=2048x2048&w=is&k=20&c=KHhbL_xSWMYtIrJx8C5Y1UK_V_DaFYCkSG5Wn52520A=",
             ],
+          },
+        },
+        UserRegistrationRequest: {
+          type: "object",
+          properties: {
+            username: {
+              type: "string",
+              description: "The username of the user",
+            },
+            email: {
+              type: "string",
+              description: "The email address of the user",
+            },
+            password: {
+              type: "string",
+              description: "The password of the user",
+            },
+          },
+          required: ["username", "email", "password"],
+        },
+        User: {
+          type: "object",
+          properties: {
+            id: {
+              type: "string",
+              description: "The unique identifier for the user",
+            },
+            username: {
+              type: "string",
+              description: "The username of the user",
+            },
+            email: {
+              type: "string",
+              description: "The email address of the user",
+            },
+          },
+          required: ["id", "username", "email"],
+        },
+        UserRegistrationResponse: {
+          type: "object",
+          properties: {
+            username: {
+              type: "string",
+              description: "The username of the registered user",
+            },
+            email: {
+              type: "string",
+              description: "The email address of the registered user",
+            },
+            password: {
+              type: "string",
+              description: "The password of the registered user",
+            },
           },
         },
       },

@@ -75,6 +75,29 @@
  *          application/json:
  *            schema:
  *              $ref: '#/components/schemas/not-found'
+ *   delete:
+ *     summary: Get a product by ID
+ *     tags: [Products]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID of the product
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: A single product
+ *         content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/product'
+ *       '404':
+ *         description: Product not found
+ *         content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/not-found'
  *   patch:
  *     summary: Update a product
  *     tags: [Products]
@@ -118,14 +141,14 @@ const {
   deleteProduct,
 } = require("../controllers/products");
 
-router.get("/products", getProducts);
+router.get("/", getProducts);
 
-router.post("/products", postProduct);
+router.post("/", postProduct);
 
-router.patch("/products/:id", patchProduct);
+router.patch("/:id", patchProduct);
 
-router.delete("/products/:id", deleteProduct);
+router.delete("/:id", deleteProduct);
 
-router.get("/products/:id", getProduct);
+router.get("/:id", getProduct);
 
 module.exports = router;
